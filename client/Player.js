@@ -9,7 +9,7 @@ function Player() {
 }
 
 Player.prototype.placeTown = function(node){
-	
+	boardGraph.BFS1()
 }
 
 Player.prototype.placeCity = function(){}

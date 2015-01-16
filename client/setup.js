@@ -28,7 +28,7 @@ var Graph = function(adjacencyList, num) {
 }
 
 Graph.prototype.map = function(fn) {
-
+	return this.al.map(fn);
 }
 
 Graph.prototype.makeList = function(num) {
@@ -89,6 +89,28 @@ Graph.prototype.BFS = function(adjacencyList, node, options, cb){
 	}
 }
 
+Graph.prototype.BFS1 = function(adjacencyList, node, cb){
+	node = node || 0;
+	var al = adjacencyList || this.al;
+	var q = [al[node]];
+	var expHash = {};
+	expHash[node] = true;
+	expHash.length = 1;
+	rec();
+	cb?cb(expHash):null;
+	return expHash;
+	function rec() {
+		al[node].forEach(function(e, i, a){
+			console.log(e, i, a)
+			if (!(e in expHash)) {
+				expHash[e] = true;
+				expHash['length'] += 1;
+				q.push(al[e]);
+			}
+		});
+	}
+}
+
 Graph.prototype.isConnected = function(node, options){
 	return this.BFS(null, node, options).length === this.al.length
 }
@@ -100,3 +122,14 @@ Graph.prototype.d3ify = function(){
 	})
 	return al;
 }
+
+Graph.prototype.startBoard = function() {
+	return this.map(function(e,i,a) {
+		return {value: i, edges: e}
+	});
+}
+
+var gr = new Graph(adLi);
+console.log(gr.BFS1(null, 10, function(expHash, proposedNode){
+	return !(proposedNode in expHash)
+}));
