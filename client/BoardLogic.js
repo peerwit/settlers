@@ -9,3 +9,7 @@
 // Roll; Trade; Build; next();
 
 var graph = new Graph(adjList);
+
+function PlayTurn(player) {
+	
+}

@@ -8,7 +8,9 @@ function Player() {
 	this.cards = [];
 }
 
-Player.prototype.placeTown = function(){}
+Player.prototype.placeTown = function(node){
+	
+}
 
 Player.prototype.placeCity = function(){}
 

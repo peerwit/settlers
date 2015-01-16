@@ -49,6 +49,7 @@ Graph.prototype.BFS = function(adjacencyList, node, options, cb){
 	}
 	node = node || 0;
 	var al = adjacencyList || this.al;
+/* --------- */		depth ? (al[node].depth = 0): null;
 	var q = [al[node]];
 	var expHash = {};
 	expHash[node] = true;
@@ -60,7 +61,8 @@ Graph.prototype.BFS = function(adjacencyList, node, options, cb){
 	return expHash;
 	function rec() {
 		var edges = q.shift();
-		edges.forEach(function(e){
+		edges.forEach(function(e, i, a){
+			console.log(e, i, a)
 			if (!(e in expHash)) {
 				expHash[e] = true;
 				expHash['length'] += 1;
