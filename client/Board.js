@@ -69,14 +69,44 @@ var p19 = [c+s, c+2*h];
 
 var tiles = [p1,p2,p3,p4,p5,p6,p7,p8,p9,p10,p11,p12,p13,p14,p15,p16,p17,p18,p19];
 
+
+
+//Tiles Randomizer
+var cards = {
+	wheats: 4,
+	sheeps: 4,
+	woods: 4,
+	ores: 3,
+	bricks: 3,
+	dessert: 1
+}
+
+var hexes = {
+	wheats: {color:'yellow'},
+	sheeps: {color:'white'},
+	ores: {color:'silver'},
+	woods: {color: 'rgb(228,202,100)'},
+	bricks: {color:'orange'},
+	dessert: {color:'black'}
+}
+
+var randomHex = [];
+
+_.each(cards,function(qty,card){
+	for(var i = 0; i<qty; i++){
+		randomHex.push(hexes[card]);
+	}
+})
+
+randomHex = _.shuffle(randomHex);
+
+
 for(var i = 0; i<tiles.length; i++){
 	var x = tiles[i][0];
 	var y = tiles[i][1];
 	var r = s;
 	var points = drawTileRotate(x,y,(r/2)+5);
-
-	var color = _.shuffle(['green','red','yellow','blue','orange'])[0];
-	console.log(color);
+	var color = randomHex.pop().color;
 
 	svg.append('polygon')
 	.attr('points',points)
