@@ -1,4 +1,9 @@
-svg.board {
-	height: 800;
-	width: 800;
+svg {
+	height: 600px;
+	width: 600px;
+	background-color: green;
+}
+
+body {
+	background-color: grey;
 }
